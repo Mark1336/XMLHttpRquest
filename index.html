@@ -1,0 +1,36 @@
+<html>
+
+<head>
+  <title>XHR</title>
+</head>
+
+<body><!--Comment-->
+  <h3>XMLHttpRequest </h3>
+
+  <p id="message"></p>
+</body>
+
+<script type="text/javascript">
+  const xhr = new XMLHttpRequest();
+
+  console.log(xhr.readyState); //Recording status in log, can be 0,1,2,3,4
+
+  xhr.onreadystatechange = function(){
+    if(xhr.readyState == 4){
+      if(xhr.status == 200){
+        document.getElementById('message').textContent = xhr.responseText;
+        console.log(xhr.responseText);
+      }
+
+      if(xhr.status == 404){
+        console.log('File or item not found.');  //Error catching
+      }
+    }
+  };
+
+  xhr.open('get', 'dom.txt', true); //"false" means it will be synchronos
+  xhr.send();
+
+</script>
+
+</html>
